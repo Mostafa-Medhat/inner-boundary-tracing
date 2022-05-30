@@ -33,6 +33,11 @@ the previous border element Pn-1 is equal to Po, stop. Otherwise repeat step (2)
 
 #### 4. The detected border is represented by pixels Po ... Pn-2.
 
+### 5. after detecting the first object, it's removed from the original image , then the algorithm starts again with the image after removing the object , and detects the boundary for the next object , then we delete it from the original image , and so on so forth.
+
+![](images&screenshots/SC1.png)
+
+
 ```bash
 # Installing Dependencies
 pip install numpy
@@ -43,5 +48,7 @@ pip install opencv-python
 # Running the application 
 python3 boundarytracing.py
 ```
+
+## 2. Hough transform :
 
 
