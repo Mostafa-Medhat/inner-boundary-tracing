@@ -71,19 +71,20 @@ def find_start (out_img,no_row,no_col):
 
 if __name__ == '__main__':
     dir = 3
-    img = cv2.imread("Hello_in_black_background.jpg", 1)
-    img = cv2.resize(img, [650, 310])
+    img = cv2.imread("hello.jpeg", 1)
+    print("image size", img.shape)
+    img = cv2.resize(img, (640, 360))
     ####################################################
-    whiteblankimage = 255 * np.zeros(shape=[512, 512, 3], dtype=np.uint8)
-    points = np.array([[160, 130], [350, 130], [250, 300]])
-    cv2.fillPoly(whiteblankimage, pts=[points], color=(255, 255, 255))
-
+    whiteblankimage = 255 * np.zeros(shape=[640, 360, 3], dtype=np.uint8)
+    # points = np.array([[160, 130], [350, 130], [250, 300]])
+    # cv2.fillPoly(whiteblankimage, pts=[points], color=(255, 255, 255))
+    #
     cv2.rectangle(whiteblankimage, pt1=(200, 200), pt2=(300, 300), color=(255, 255, 255), thickness=-1)
     cv2.rectangle(whiteblankimage, pt1=(50, 50), pt2=(150, 150), color=(255, 255, 255), thickness=-1)
     cv2.rectangle(whiteblankimage, pt1=(400, 400), pt2=(500, 500), color=(255, 255, 255), thickness=-1)
-    gray = cv2.cvtColor(whiteblankimage, cv2.COLOR_BGR2GRAY)
-
-    ret, img_1 = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)  # binary image
+    # gray = cv2.cvtColor(whiteblankimage, cv2.COLOR_BGR2GRAY)
+    #
+    # ret, img_1 = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)  # binary image
     ###############################################
 
     output_img = np.copy(img)
