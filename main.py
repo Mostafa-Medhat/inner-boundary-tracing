@@ -6,16 +6,16 @@ import numpy as np
 def check(image, no_rows, no_cols, point, direction):
     # if (check direction) and (check if the new pixel is not outside the image) and (check the pixel is wight)
 
-    if direction == 3 and point[0]+1 <= no_rows-1 and image[point[0] + 1] [point[1]] [0] > 200:
+    if direction == 3 and point[0]+1 <= no_rows-1 and image[point[0] + 1] [point[1]]  > 200:
         p = [point[0]+1, point[1]]
 
-    elif direction == 2 and point[1]-1 >= 0 and image[point[0]] [point[1] - 1] [0] > 200:
+    elif direction == 2 and point[1]-1 >= 0 and image[point[0]] [point[1] - 1]  > 200:
         p = [point[0], point[1]-1]
 
-    elif direction == 1 and point[0]-1 >= 0 and image[point[0] - 1] [point[1]] [0] > 200:
+    elif direction == 1 and point[0]-1 >= 0 and image[point[0] - 1] [point[1]]  > 200:
         p = [point[0]-1, point[1]]
 
-    elif direction == 0 and point[1]+1 <= no_cols-1 and image[point[0]] [point[1] + 1] [0] > 200:
+    elif direction == 0 and point[1]+1 <= no_cols-1 and image[point[0]] [point[1] + 1]  > 200:
         p = [point[0], point[1]+1]
 
     else:
@@ -71,22 +71,22 @@ def find_start (out_img,no_row,no_col):
 
 if __name__ == '__main__':
     dir = 3
-    img = cv2.imread("Hello_in_black_background.jpg", 1)
+    img = cv2.imread("tst.png", 0)
     img = cv2.resize(img, [650, 310])
     ####################################################
-    whiteblankimage = 255 * np.zeros(shape=[512, 512, 3], dtype=np.uint8)
-    points = np.array([[160, 130], [350, 130], [250, 300]])
-    cv2.fillPoly(whiteblankimage, pts=[points], color=(255, 255, 255))
-
-    cv2.rectangle(whiteblankimage, pt1=(200, 200), pt2=(300, 300), color=(255, 255, 255), thickness=-1)
-    cv2.rectangle(whiteblankimage, pt1=(50, 50), pt2=(150, 150), color=(255, 255, 255), thickness=-1)
-    cv2.rectangle(whiteblankimage, pt1=(400, 400), pt2=(500, 500), color=(255, 255, 255), thickness=-1)
-    gray = cv2.cvtColor(whiteblankimage, cv2.COLOR_BGR2GRAY)
-
-    ret, img_1 = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)  # binary image
+    #img = 255 * np.zeros(shape=[640,640, 3], dtype=np.uint8)
+    #cv2.rectangle(img, pt1=(200, 200), pt2=(300, 300), color=(255, 255, 255), thickness=-1)
+    #cv2.rectangle(img, pt1=(50, 50), pt2=(150, 150), color=(255, 255, 255), thickness=-1)
+    #cv2.rectangle(img, pt1=(400, 400), pt2=(500, 500), color=(255, 255, 255), thickness=-1)
+    #img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    ret, img = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)  # binary image
     ###############################################
-
+    #cv2.imshow("gg", img)
+    #cv2.waitKey(0)
+    print(np.shape(img))
     output_img = np.copy(img)
+    output_img = cv2.cvtColor(output_img, cv2.COLOR_GRAY2BGR)
+    print(output_img[156][106])
     no_rows = np.shape(img)[0]
     no_cols = np.shape(img)[1]
     start = find_start(output_img, no_rows, no_cols)
@@ -111,6 +111,7 @@ if __name__ == '__main__':
                     edge_points.append(checked_point)
                     break
                 else:
+                    #zprint("cccccccccccccc")
                     dir = (dir+1) % 4
 
             if (edge_points[0] == edge_points[-2]) and (edge_points[1] == edge_points[-1]) and (len(edge_points) > 2):
