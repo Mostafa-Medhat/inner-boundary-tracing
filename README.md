@@ -40,13 +40,13 @@ the previous border element Pn-1 is equal to Po, stop. Otherwise repeat step (2)
 
 ```bash
 # Installing Dependencies
-pip install numpy
+pip install numpy as np
 pip install opencv-python
 
 # clone the rebo
 
 # Running the application 
-python3 boundarytracing.py
+python3 boundaryTracing.py
 ```
 
 ## 2. Hough transform :
