@@ -71,16 +71,11 @@ def set_boundary(img):
 
 if __name__ == '__main__':
 
-    # my_image = cv2.imread('shapes.jpeg', 0)
-    # my_image = cv2.resize(my_image, (500, 500))
-    # my_image.resize(512, 512)
-
     blank = 255 * np.zeros(shape=[512, 512, 3], dtype=np.uint8)  # create blank image
 
-    cv2.rectangle(blank, pt1=(200, 200), pt2=(300, 300), color=(255, 255, 255), thickness=-1)  # draw squares
     cv2.rectangle(blank, pt1=(50, 50), pt2=(150, 150), color=(255, 255, 255), thickness=-1)  # draw squares
-    cv2.rectangle(blank, pt1=(400, 400), pt2=(500, 500), color=(255, 255, 255), thickness=-1)  # draw squares
-    # cv2.circle(blank, (100, 100), 50, (255, 255, 255), -1)
+    cv2.rectangle(blank, pt1=(200, 200), pt2=(300, 300), color=(255, 255, 255), thickness=-1)  # draw squares
+    cv2.rectangle(blank, pt1=(350, 350), pt2=(450, 450), color=(255, 255, 255), thickness=-1)  # draw squares
 
     gray = cv2.cvtColor(blank, cv2.COLOR_BGR2GRAY)  # convert to grey scale
 
