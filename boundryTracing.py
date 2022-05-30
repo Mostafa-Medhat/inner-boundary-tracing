@@ -8,7 +8,7 @@ import cv2
 
 
 def search_for_first_pixel(img):
-    no_row, no_col  = img.shape
+    no_row, no_col = img.shape
     for r in range(no_row):
         for c in range(no_col):
             if img[r][c] != 0:
@@ -66,33 +66,29 @@ def set_boundary(img):
             for y in range(y_min, y_max+1):
                 img[x][y] = 0
 
-
     return new_img
 
 
 if __name__ == '__main__':
+
     # my_image = cv2.imread('shapes.jpeg', 0)
     # my_image = cv2.resize(my_image, (500, 500))
     # my_image.resize(512, 512)
-    whiteblankimage = 255 * np.zeros(shape=[512, 512, 3], dtype=np.uint8)
-    points = np.array([[160, 130], [350, 130], [250, 300]])
 
-    # Use fillPoly() function and give input as
-    # image, end points,color of polygon
-    # Here color of polygon will blue
-    cv2.fillPoly(whiteblankimage, pts=[points], color=(255, 255, 255))
+    blank = 255 * np.zeros(shape=[512, 512, 3], dtype=np.uint8)  # create blank image
 
+    cv2.rectangle(blank, pt1=(200, 200), pt2=(300, 300), color=(255, 255, 255), thickness=-1)  # draw squares
+    cv2.rectangle(blank, pt1=(50, 50), pt2=(150, 150), color=(255, 255, 255), thickness=-1)  # draw squares
+    cv2.rectangle(blank, pt1=(400, 400), pt2=(500, 500), color=(255, 255, 255), thickness=-1)  # draw squares
+    # cv2.circle(blank, (100, 100), 50, (255, 255, 255), -1)
 
-    # cv2.rectangle(whiteblankimage, pt1=(200, 200), pt2=(300, 300), color=(255, 255, 255), thickness=-1)
-    # cv2.rectangle(whiteblankimage, pt1=(50, 50), pt2=(150, 150), color=(255, 255, 255), thickness=-1)
-    # cv2.rectangle(whiteblankimage, pt1=(400, 400), pt2=(500, 500), color=(255, 255, 255), thickness=-1)
-    # cv2.circle(whiteblankimage, (100, 100), 50, (255, 255, 255), -1)
+    gray = cv2.cvtColor(blank, cv2.COLOR_BGR2GRAY)  # convert to grey scale
 
+    ret, binary_image = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)  # binary image
+    my_new_image = set_boundary(binary_image)  # apply algorithm
 
-    gray = cv2.cvtColor(whiteblankimage, cv2.COLOR_BGR2GRAY)
-
-    ret, bw_img = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)  # binary image
-    my_new_image = set_boundary(bw_img)  # apply algorithm
+    cv2.imshow('Original', gray)
     cv2.imshow('HOPE', my_new_image)
+
     cv2.waitKey()
     cv2.destroyAllWindows()
