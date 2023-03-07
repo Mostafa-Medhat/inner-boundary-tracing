@@ -71,7 +71,7 @@ def find_start (out_img,no_row,no_col):
 
 if __name__ == '__main__':
     dir = 3
-    img = cv2.imread("hello.jpeg", 0)
+    img = cv2.imread("images&screenshots/hello.jpeg", 0)
     img = cv2.resize(img, (650, 310))
     ####################################################
     ret, img = cv2.threshold(img, 200, 255, cv2.THRESH_BINARY)  # binary image
