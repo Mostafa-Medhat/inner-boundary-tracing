@@ -36,6 +36,9 @@ the previous border element Pn-1 is equal to Po, stop. Otherwise repeat step (2)
 ### 5. after detecting the first object, it's removed from the original image , then the algorithm starts again with the image after removing the object , and detects the boundary for the next object , then we delete it from the original image , and so on so forth.
 
 ![](images&screenshots/SC1.png)
+#### 5.1 Uploading an existing image using BoundaryTracing_2.py
+![image](https://user-images.githubusercontent.com/61350640/223498553-916942ae-b23b-46b9-bc6f-ffbc38d03bcf.png)
+
 
 
 ```bash
